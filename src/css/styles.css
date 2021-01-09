@@ -6,7 +6,7 @@ body {
 }
 
 .timer-title {
-  color: #396;
+  color: rgb(75, 80, 78);
   font-weight: 100;
   font-size: 40px;
   margin: 40px 0px 20px;
@@ -24,14 +24,14 @@ body {
 .field {
   padding: 10px;
   border-radius: 3px;
-  background: #00bf96;
+  background: #2f3332;
   display: inline-block;
 }
 
 .value {
   padding: 15px;
   border-radius: 3px;
-  background: #00816a;
+  background: #0e0f0f;
   display: inline-block;
 }
 
