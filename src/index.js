@@ -2,34 +2,34 @@ import css from "./css/styles.css";
 import refs from "./js/refs.js";
 
 class CountdownTimer {
-  constructor({ timer }) {
+  constructor({ onTick }) {
     this.intervalId = null;
-    this.isActive = false;
-    this.onTick = timer;
+    this.onTick = onTick;
 
     this.init();
   }
 
   init() {
     const time = this.getTimeComponents(0);
-    this.timer(time);
+    this.onTick(time);
   }
 
-  const startTime = Date.now();
-  this.isActive = true;
+  start() {
+    const startTime = Date.now();
 
-  this.intervalId = setInterval(() => {
-    const currentTime = Date.now();
-    const deltaTime = currentTime - startTime;
-    const time = this.getTimeComponents(deltaTime);
+    this.intervalId = setInterval(() => {
+      const currentTime = new Date("Jul 17, 2021");
+      const deltaTime = currentTime - startTime;
+      const time = this.getTimeComponents(deltaTime);
 
-    this.onTick(time);
-  }, 1000);
+      this.onTick(time);
+    }, 1000);
+  }
 
   getTimeComponents(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
     const hours = this.pad(
-      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
     );
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
     const secs = this.pad(Math.floor((time % (1000 * 60)) / 1000));
@@ -42,18 +42,17 @@ class CountdownTimer {
   }
 }
 
-
-new CountdownTimer({
+const timer = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Feb 14, 2021"),
-});
-
-const timer = new Timer({
+  targetDate: new Date("Jul 17, 2021"),
   onTick: updateClockface,
 });
 
+console.log(timer.targetDate);
+
 function updateClockface({ days, hours, mins, secs }) {
   refs.timerDays.textContent = `${days}`;
+  refs.timerHours.textContent = `${hours}`;
+  refs.timerMins.textContent = `${mins}`;
+  refs.timerSecs.textContent = `${secs}`;
 }
-
-console.log(timerDays)
