@@ -48,6 +48,8 @@ const timer = new CountdownTimer({
   onTick: updateClockface,
 });
 
+console.dir(refs.timerClock);
+
 function updateClockface({ days, hours, mins, secs }) {
   refs.timerDays.textContent = `${days}`;
   refs.timerHours.textContent = `${hours}`;
