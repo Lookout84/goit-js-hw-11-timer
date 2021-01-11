@@ -44,27 +44,27 @@ class CountdownTimer {
 
 const timer = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("dec 31, 2021"),
+  targetDate: new Date("jan 13, 2021"),
   onTick: updateClockface,
 });
 
 function updateClockface({ days, hours, mins, secs }) {
   refs.timerDays.textContent = `${days}`;
-  if (days <= 1) {
-    refs.days.textContent = "Day";
-  } else refs.days.textContent = "Days";
+  if (days == 1) {
+    refs.timerDays.nextElementSibling.textContent = "Day";
+  } else refs.timerDays.nextElementSibling.textContent = "Days";
   refs.timerHours.textContent = `${hours}`;
-  if (hours <= 1) {
-    refs.hours.textContent = "Hour";
-  } else refs.hours.textContent = "Hours";
+  if (hours == 1) {
+    refs.timerHours.nextElementSibling.textContent = "Hour";
+  } else refs.timerHours.nextElementSibling.textContent = "Hours";
   refs.timerMins.textContent = `${mins}`;
-  if (mins <= 1) {
-    refs.minutes.textContent = "Minute";
-  } else refs.minutes.textContent = "Minutes";
+  if (mins == 1) {
+    refs.timerMins.nextElementSibling.textContent = "Minute";
+  } else refs.timerMins.nextElementSibling.textContent = "Minutes";
   refs.timerSecs.textContent = `${secs}`;
-  if (secs <= 1) {
-    refs.seconds.textContent = "Second";
-  } else refs.seconds.textContent = "Seconds";
+  if (secs == 1) {
+    refs.timerSecs.nextElementSibling.textContent = "Second";
+  } else refs.timerSecs.nextElementSibling.textContent = "Seconds";
 }
 
 timer.start();
