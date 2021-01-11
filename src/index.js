@@ -2,11 +2,11 @@ import css from "./css/styles.css";
 import refs from "./js/refs.js";
 
 class CountdownTimer {
-  constructor({ onTick }) {
+  constructor({ onTick, selector, targetDate }) {
     this.intervalId = null;
     this.onTick = onTick;
-
-    this.init();
+    this.selector = selector;
+    this.targetDate = targetDate;
   }
 
   init() {
@@ -15,10 +15,11 @@ class CountdownTimer {
   }
 
   start() {
-    const startTime = Date.now();
+    const endTime = this.targetDate;
+
     this.intervalId = setInterval(() => {
-      const currentTime = new Date("Jul 17, 2021");
-      const deltaTime = currentTime - startTime;
+      const startTime = Date.now();
+      const deltaTime = endTime - startTime;
       const time = this.getTimeComponents(deltaTime);
 
       this.onTick(time);
@@ -43,13 +44,9 @@ class CountdownTimer {
 
 const timer = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Jul 17, 2021"),
+  targetDate: new Date("dec 31, 2021"),
   onTick: updateClockface,
 });
-
-console.log(timer.start.startTime);
-
-console.dir(refs.timerClock);
 
 function updateClockface({ days, hours, mins, secs }) {
   refs.timerDays.textContent = `${days}`;
@@ -57,3 +54,5 @@ function updateClockface({ days, hours, mins, secs }) {
   refs.timerMins.textContent = `${mins}`;
   refs.timerSecs.textContent = `${secs}`;
 }
+
+timer.start();
