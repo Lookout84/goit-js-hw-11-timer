@@ -16,7 +16,6 @@ class CountdownTimer {
 
   start() {
     const startTime = Date.now();
-    console.log(currentTime);
     this.intervalId = setInterval(() => {
       const currentTime = new Date("Jul 17, 2021");
       const deltaTime = currentTime - startTime;
@@ -47,6 +46,8 @@ const timer = new CountdownTimer({
   targetDate: new Date("Jul 17, 2021"),
   onTick: updateClockface,
 });
+
+console.log(timer.start.startTime);
 
 console.dir(refs.timerClock);
 
