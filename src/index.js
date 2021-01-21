@@ -14,15 +14,17 @@ class CountdownTimer {
     this.onTick(time);
   }
 
-  start() {
+  getStartTime() {
     const endTime = this.targetDate;
+    const startTime = Date.now();
+    const deltaTime = endTime - startTime;
+    const time = this.getTimeComponents(deltaTime);
+    this.onTick(time);
+  }
 
+  start() {
     this.intervalId = setInterval(() => {
-      const startTime = Date.now();
-      const deltaTime = endTime - startTime;
-      const time = this.getTimeComponents(deltaTime);
-
-      this.onTick(time);
+      this.getStartTime();
     }, 1000);
   }
 
@@ -67,4 +69,6 @@ function updateClockface({ days, hours, mins, secs }) {
   } else refs.timerSecs.nextElementSibling.textContent = "Seconds";
 }
 
+//
+timer.getStartTime();
 timer.start();
